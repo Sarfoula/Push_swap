@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   swap2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 00:21:23 by yallo             #+#    #+#             */
-/*   Updated: 2023/08/28 00:21:23 by yallo            ###   ########.fr       */
+/*   Created: 2023/09/13 22:38:01 by yallo             #+#    #+#             */
+/*   Updated: 2023/09/13 22:38:01 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int main(int argc, char **argv)
+void ss(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *stack_a = NULL;
-	t_stack	*stack_b = NULL;
+	swap(stack_a, NULL);
+	swap(stack_b, "ss");
+}
 
-	if ((argc > 2) | (argc == 1))
-		return (ft_printf("Wrong numbers of argument:\n./push_swap \"NUMBERS\""), 0);
-	if (parse(argv[1], &stack_a) == 1)
-		return (0);
-	add_stack(&stack_b, 10);
-	add_stack(&stack_b, 20);
-	push(&stack_a, &stack_b);
-	printlst(stack_a);
-	free_stack(stack_a);
-	return (0);
+void rr(t_stack **stack_a, t_stack **stack_b)
+{
+	rotate(stack_a, NULL);
+	rotate(stack_b, "rr");
+}
+
+void rrr(t_stack **stack_a, t_stack **stack_b)
+{
+	reverse_rotate(stack_a, NULL);
+	reverse_rotate(stack_b, "rrr");
 }

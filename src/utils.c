@@ -13,9 +13,9 @@
 #include "../push_swap.h"
 
 
-void free_stack(list *stack)
+void free_stack(t_stack *stack)
 {
-	list *tmp;
+	t_stack *tmp;
 
 	while (stack != NULL)
 	{
@@ -25,19 +25,19 @@ void free_stack(list *stack)
 	}
 }
 
-list *last_node(list *stack)
+t_stack *last_node(t_stack *stack)
 {
 	while (stack->next != NULL)
 		stack = stack->next;
 	return (stack);
 }
 
-int	add_stack(list **stack, int data)
+int	add_stack(t_stack **stack, int data)
 {
-	list *new_node;
-	list *last;
+	t_stack *new_node;
+	t_stack *last;
 
-	new_node = malloc(sizeof(list));
+	new_node = malloc(sizeof(t_stack));
 	if (new_node == NULL)
 		return (1);
 	new_node->next = NULL;
@@ -50,4 +50,17 @@ int	add_stack(list **stack, int data)
 	last = last_node(*stack);
 	last->next = new_node;
 	return (0);
+}
+
+size_t size_stack(t_stack *stack)
+{
+	size_t	count;
+
+	count = 0;
+	while (stack != NULL)
+	{
+		stack = stack->next;
+		count++;
+	}
+	return (count);
 }

@@ -17,7 +17,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 all: $(PRINTF) $(LIBFT) $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAG) $(OBJ) -L$(LIBFT_DIR) -L$(PRINTF_DIR) -lft -lftprintf -o $(NAME)
+	$(CC) $(FLAG) $(OBJ) -g -L$(LIBFT_DIR) -L$(PRINTF_DIR) -lft -lftprintf -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(FLAG) -c $< -o $@
