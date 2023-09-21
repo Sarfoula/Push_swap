@@ -6,6 +6,7 @@
 typedef struct	s_stack
 {
 	int 			data;
+	int				size;
 	struct s_stack	*next;
 }				t_stack;
 
@@ -15,7 +16,7 @@ void printlst(t_stack *stack);
 //Utils
 int	add_stack(t_stack **stack, int data);
 t_stack *last_node(t_stack *stack);
-void free_stack(t_stack *stack);
+void free_all(t_stack *stack, char **str, char *display);
 size_t size_stack(t_stack *stack);
 
 //Parse
@@ -29,5 +30,9 @@ void reverse_rotate(t_stack **stack, char *str);
 void ss(t_stack **stack_a, t_stack **stack_b);
 void rr(t_stack **stack_a, t_stack **stack_b);
 void rrr(t_stack **stack_a, t_stack **stack_b);
+
+//Algorithm
+int get_data(t_stack *stack, size_t index);
+void sort(t_stack **stack_a, t_stack **stack_b);
 
 #endif

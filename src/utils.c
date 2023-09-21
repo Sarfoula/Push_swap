@@ -13,16 +13,29 @@
 #include "../push_swap.h"
 
 
-void free_stack(t_stack *stack)
+void free_all(t_stack *stack, char **str, char *display)
 {
+	int i;
 	t_stack *tmp;
 
-	while (stack != NULL)
+	if (stack != NULL)
 	{
-		tmp = stack;
-		stack = stack->next;
-		free(tmp);
+		while (stack != NULL)
+		{
+			tmp = stack;
+			stack = stack->next;
+			free(tmp);
+		}
 	}
+	if (str != NULL)
+	{
+		i = -1;
+		while (!str[i++])
+			free(str[i]);
+		free(str);
+	}
+	if (display != NULL)
+		ft_printf("%s", display);
 }
 
 t_stack *last_node(t_stack *stack)

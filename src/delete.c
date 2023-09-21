@@ -2,13 +2,11 @@
 
 void printlst(t_stack *stack)
 {
-	t_stack *tmp;
 
-	tmp = stack;
-	while (tmp != NULL)
+	while (stack != NULL)
 	{
-		printf("[%d]---", tmp->data);
-		tmp = tmp->next;
+		printf("[%d]---", stack->data);
+		stack = stack->next;
 	}
 	printf("[END]\n");
 }
