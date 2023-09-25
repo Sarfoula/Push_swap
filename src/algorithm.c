@@ -5,78 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 17:38:20 by yallo             #+#    #+#             */
-/*   Updated: 2023/09/14 17:38:20 by yallo            ###   ########.fr       */
+/*   Created: 2023/09/22 17:56:24 by yallo             #+#    #+#             */
+/*   Updated: 2023/09/25 17:18:58 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int find_min(t_stack *stack)
+int find(t_stack *stack)
 {
-	size_t i;
-	int min;
+	int a;
+	int b;
+	int c;
 
-	i = 0;
-	min = 0;
-	while (i <= size_stack(stack))
+	a = stack->data;
+	b = get_data(stack, 2);
+	c = get_data(stack, 3);
+	if ((a >= b && a <= c) || (a <= b && a >= c))
+		return a;
+	if ((b <= a && b >= c) || (b >= a && b <= c))
+		return b;
+	return c;
+}
+
+void quicksort(t_stack **test)
+{
+	int pivot;
+	t_stack *petit = NULL;
+	t_stack *grand = NULL;
+	t_stack *stack = *test;
+
+	if (stack->next == NULL ||stack == NULL)
+		return ;
+	pivot = find(stack);
+	while (stack != NULL)
 	{
-		if (get_data(stack, min) > get_data(stack, i) || i == 0)
-			min = i;
-		i++;
+		if (stack->data > pivot)
+			add_stack(&grand, stack->data);
+		else
+			add_stack(&petit, stack->data);
+	stack = stack->next;
 	}
-	return (min);
-}
-
-int get_data(t_stack *stack, size_t index)
-{
-	while (index > 1 && stack->next != NULL)
-	{
-		stack = stack->next;
-		index--;
-	}
-	return (stack->data);
-}
-
-void three(t_stack **stack)
-{
-	if ((*stack)->data > get_data(*stack, 2))
-		swap(stack, "sa");
-	if (get_data(*stack, 2) > get_data(*stack, 3))
-		reverse_rotate(stack, "rra");
-	if ((*stack)->data > get_data(*stack, 2))
-		swap(stack, "sa");
-}
-
-void five(t_stack **stack_a, t_stack **stack_b)
-{
-	int i;
-	int min;
-
-	i = 0;
-	while (i < 2)
-	{
-		min = find_min(*stack_a);
-		while (min > 1)
-		{
-			rotate(stack_a, "ra");
-			min--;
-		}
-		push(stack_b, stack_a, "pb");
-		i++;
-	}
-	three(stack_a);
-	push(stack_a, stack_b, "pa");
-	push(stack_a, stack_b, "pa");
-}
-
-void sort(t_stack **stack_a, t_stack **stack_b)
-{
-	int size;
-
-	size = size_stack(*stack_a);
-	if (size == 3)
-		three(stack_a);
-	if (size == 5)
-		five(stack_a, stack_b);
+	if (size_stack(petit) > 2)
+		quicksort(&petit);
+	if (size_stack(grand) > 2)
+		quicksort(&grand);
+	last_node(petit)->next = grand;
+	*test = petit;
 }

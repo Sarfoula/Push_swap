@@ -36,6 +36,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(PRINTF_DIR)
+	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
