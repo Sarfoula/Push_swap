@@ -8,5 +8,5 @@ void printlst(t_stack *stack)
 		printf("[%d]---", stack->data);
 		stack = stack->next;
 	}
-	printf("[END]\n");
+	printf("[END]\n\n");
 }

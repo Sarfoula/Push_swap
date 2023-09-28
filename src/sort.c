@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:38:20 by yallo             #+#    #+#             */
-/*   Updated: 2023/09/25 14:54:47 by yallo            ###   ########.fr       */
+/*   Updated: 2023/09/28 15:24:41 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,30 @@ int find_min(t_stack *stack)
 	min = 0;
 	while (i <= size_stack(stack))
 	{
-		if (get_data(stack, min) > get_data(stack, i) || i == 0)
+		if (get_data(stack, min)->data > get_data(stack, i)->data || i == 0)
 			min = i;
 		i++;
 	}
 	return (min);
 }
 
-int get_data(t_stack *stack, size_t index)
+t_stack *get_data(t_stack *stack, size_t index)
 {
-	while (index > 1 && stack->next != NULL)
+	while (index > 0 && stack->next != NULL)
 	{
 		stack = stack->next;
 		index--;
 	}
-	return (stack->data);
+	return (stack);
 }
 
 void three(t_stack **stack)
 {
-	if ((*stack)->data > get_data(*stack, 2))
+	if ((*stack)->data > get_data(*stack, 2)->data)
 		swap(stack, "sa");
-	if (get_data(*stack, 2) > get_data(*stack, 3))
+	if (get_data(*stack, 2)->data > get_data(*stack, 3)->data)
 		reverse_rotate(stack, "rra");
-	if ((*stack)->data > get_data(*stack, 2))
+	if ((*stack)->data > get_data(*stack, 2)->data)
 		swap(stack, "sa");
 }
 
@@ -80,5 +80,5 @@ void sort(t_stack **stack_a, t_stack **stack_b)
 	else if (size == 5)
 		five(stack_a, stack_b);
 	else
-		quicksort(stack_a);
+		algorithm(stack_a, stack_b);
 }

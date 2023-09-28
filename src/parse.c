@@ -6,23 +6,11 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:28:03 by yallo             #+#    #+#             */
-/*   Updated: 2023/08/30 16:28:03 by yallo            ###   ########.fr       */
+/*   Updated: 2023/09/26 14:57:12 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-//2147483647
-
-/*void ftf_atoi(char *str)
-{
-	long result;
-	int sign;
-
-	if (ft_strlen(str) > 10)
-		return ;
-	
-}*/
 
 int check_str(char **split)
 {
@@ -41,7 +29,7 @@ int check_str(char **split)
 		}
 		i++;
 	}
-	if (i == 1)
+	if (i <= 1)
 		return (1);
 	return (0);
 }
@@ -75,18 +63,19 @@ int parse(char *str, t_stack **stack)
 	i = 0;
 	split = ft_split(str, ' ');
 	if (check_str(split) == 1)
-		return (ft_printf("Please only a list of integers !!!"), 1);
+		return (ft_printf("Error\nArgument not a list of integers"), 1);
 	while (split[i] != NULL)
 	{
 		data = ft_atoi(split[i]);
 		if (data > 2147483647 || data < -2147483648)
-			return (free_all(NULL, split, "Integers has limits"), 1);
-		add_stack(stack, data);
+			return (free_all(NULL, split, "Error\nIntegers has limits"), 1);
+		if (add_stack(stack, data) == 1)
+			return (ft_printf("Malloc failed"), 1);
 		free(split[i]);
 		i++;
 	}
 	free(split);
 	if (check_digit(*stack) == 1)
-		return (ft_printf("There is a duplicate !!!"), 1);
+		return (ft_printf("Error/nThere is a duplicate !!!"), 1);
 	return (0);
 }
