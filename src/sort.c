@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:38:20 by yallo             #+#    #+#             */
-/*   Updated: 2023/09/28 15:24:41 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/08 15:57:04 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int find_min(t_stack *stack)
 
 t_stack *get_data(t_stack *stack, size_t index)
 {
-	while (index > 0 && stack->next != NULL)
+	while (index > 0 && stack != NULL)
 	{
 		stack = stack->next;
 		index--;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 18:55:34 by yallo             #+#    #+#             */
-/*   Updated: 2023/09/09 18:55:34 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/07 20:13:27 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void push(t_stack **to, t_stack **from, char *str)
 	*from = (*from)->next;
 	temp->next = *to;
 	*to = temp;
-	ft_printf("%s\n", str);
+	if (size_stack(*from) == 0)
+		*from = NULL;
+	if (str != NULL)
+		ft_printf("%s\n", str);
 }
 
 void rotate(t_stack **stack, char *str)

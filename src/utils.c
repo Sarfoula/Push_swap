@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:08:32 by yallo             #+#    #+#             */
-/*   Updated: 2023/09/26 14:44:48 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/10 19:27:31 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@ void free_all(t_stack *stack, char **str, char *display)
 	int i;
 	t_stack *tmp;
 
-	if (stack != NULL)
+	while (stack != NULL)
 	{
-		while (stack != NULL)
-		{
-			tmp = stack;
-			stack = stack->next;
-			free(tmp);
-		}
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
 	}
 	if (str != NULL)
 	{

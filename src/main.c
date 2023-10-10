@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:21:23 by yallo             #+#    #+#             */
-/*   Updated: 2023/09/25 15:28:44 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/10 19:14:19 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int main(int argc, char **argv)
 	if (is_sorted(stack_a) == 1)
 		return (ft_printf("The list is already sorted"), 0);
 	sort(&stack_a, &stack_b);
-	printlst(stack_a);
+	if (is_sorted(stack_a) == 1)
+		ft_printf("\nSORTED\n");
+	else
+		ft_printf("\nNOT SORTED\n");
 	free_all(stack_a, NULL, NULL);
 	return (0);
 }

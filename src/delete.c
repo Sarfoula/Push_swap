@@ -2,7 +2,6 @@
 
 void printlst(t_stack *stack)
 {
-
 	while (stack != NULL)
 	{
 		printf("[%d]---", stack->data);

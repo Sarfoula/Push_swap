@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:28:03 by yallo             #+#    #+#             */
-/*   Updated: 2023/09/26 14:57:12 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/04 00:35:07 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ int parse(char *str, t_stack **stack)
 	}
 	free(split);
 	if (check_digit(*stack) == 1)
-		return (ft_printf("Error/nThere is a duplicate !!!"), 1);
+		return (ft_printf("Error\nThere is a duplicate !!!"), 1);
 	return (0);
 }
