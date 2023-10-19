@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:08:32 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/10 19:27:31 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/19 02:13:57 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ void free_all(t_stack *stack, char **str, char *display)
 	}
 	if (str != NULL)
 	{
-		i = -1;
-		while (!str[i++])
+		i = 0;
+		while (str[i] != NULL)
+		{
 			free(str[i]);
+			i++;
+		}
 		free(str);
 	}
 	if (display != NULL)
@@ -37,6 +40,8 @@ void free_all(t_stack *stack, char **str, char *display)
 
 t_stack *last_node(t_stack *stack)
 {
+	if (stack == NULL)
+		return (NULL);
 	while (stack->next != NULL)
 		stack = stack->next;
 	return (stack);

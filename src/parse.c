@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:28:03 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/04 00:35:07 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/20 00:46:54 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int check_str(char **split)
 		}
 		i++;
 	}
-	if (i <= 1)
+	if (i <= 1 || i > 11)
 		return (1);
 	return (0);
 }
@@ -63,19 +63,18 @@ int parse(char *str, t_stack **stack)
 	i = 0;
 	split = ft_split(str, ' ');
 	if (check_str(split) == 1)
-		return (ft_printf("Error\nArgument not a list of integers"), 1);
+		return (free_all(NULL, split, "Error\nArgument not a list of integers\n"), 1);
 	while (split[i] != NULL)
 	{
 		data = ft_atoi(split[i]);
 		if (data > 2147483647 || data < -2147483648)
-			return (free_all(NULL, split, "Error\nIntegers has limits"), 1);
+			return (free_all(*stack, split, "Error\nIntegers has limits\n"), 1);
 		if (add_stack(stack, data) == 1)
-			return (ft_printf("Malloc failed"), 1);
-		free(split[i]);
+			return (free_all(*stack, split, "Malloc failed"), 1);
 		i++;
 	}
-	free(split);
 	if (check_digit(*stack) == 1)
-		return (ft_printf("Error\nThere is a duplicate !!!"), 1);
+		return (free_all(*stack, split, "Error\nThere is a duplicate !!!\n"), 1);
+	free_all(NULL, split, NULL);
 	return (0);
 }

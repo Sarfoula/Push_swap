@@ -34,7 +34,7 @@ void rrr(t_stack **stack_a, t_stack **stack_b);
 t_stack *get_data(t_stack *stack, size_t index);
 void sort(t_stack **stack_a, t_stack **stack_b);
 void algorithm(t_stack **stack_a, t_stack **stack_b);
-void quicksort(t_stack **stack);
+void quicksort(t_stack **head);
 int is_sorted(t_stack *stack);
 
 void test(t_stack **stack);

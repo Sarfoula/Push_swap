@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:38:20 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/08 15:57:04 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/18 22:46:16 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int find_min(t_stack *stack)
 
 	i = 0;
 	min = 0;
-	while (i <= size_stack(stack))
+	while (i < size_stack(stack))
 	{
 		if (get_data(stack, min)->data > get_data(stack, i)->data || i == 0)
 			min = i;
@@ -40,11 +40,11 @@ t_stack *get_data(t_stack *stack, size_t index)
 
 void three(t_stack **stack)
 {
-	if ((*stack)->data > get_data(*stack, 2)->data)
+	if ((*stack)->data > get_data(*stack, 1)->data)
 		swap(stack, "sa");
-	if (get_data(*stack, 2)->data > get_data(*stack, 3)->data)
+	if (get_data(*stack, 1)->data > get_data(*stack, 2)->data)
 		reverse_rotate(stack, "rra");
-	if ((*stack)->data > get_data(*stack, 2)->data)
+	if ((*stack)->data > get_data(*stack, 1)->data)
 		swap(stack, "sa");
 }
 
@@ -57,7 +57,7 @@ void five(t_stack **stack_a, t_stack **stack_b)
 	while (i < 2)
 	{
 		min = find_min(*stack_a);
-		while (min > 1)
+		while (min > 0)
 		{
 			rotate(stack_a, "ra");
 			min--;

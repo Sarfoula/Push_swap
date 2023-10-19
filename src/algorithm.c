@@ -6,80 +6,77 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:56:24 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/10 19:29:14 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/19 02:38:42 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_stack* partition(t_stack* head, t_stack* end, t_stack** newHead, t_stack** newEnd) {
-    t_stack* pivot = end;
-    t_stack* prev = NULL, *cur = head, *tail = pivot;
-
-    while (cur != pivot) {
-        if (cur->data < pivot->data) {
-            if (*newHead == NULL)
-                *newHead = cur;
-            prev = cur;
-            cur = cur->next;
-        } else {
-            if (prev)
-                prev->next = cur->next;
-            t_stack* tmp = cur->next;
-            cur->next = NULL;
-            tail->next = cur;
-            tail = cur;
-            cur = tmp;
-        }
-    }
-
-    if (*newHead == NULL)
-        *newHead = pivot;
-
-    *newEnd = tail;
-    return pivot;
-}
-
-t_stack* quickSortRec(t_stack* head, t_stack* end) {
-    if (!head || head == end)
-        return head;
-
-    t_stack* newHead = NULL, *newEnd = NULL;
-    t_stack* pivot = partition(head, end, &newHead, &newEnd);
-
-    if (newHead != pivot) {
-        t_stack* tmp = newHead;
-        while (tmp->next != pivot)
-            tmp = tmp->next;
-        tmp->next = NULL;
-
-        newHead = quickSortRec(newHead, tmp);
-        tmp = last_node(newHead);
-        tmp->next = pivot;
-    }
-
-    pivot->next = quickSortRec(pivot->next, newEnd);
-    return newHead;
-}
-
-void simple(t_stack *stack)
+int find(t_stack *stack, int size)
 {
-	t_stack	*head;
-	int		temp;
+	int	a;
+	int b;
+	int	c;
 
-	head = stack;
-	while (is_sorted(stack) == 0)
+	a = stack->data;
+	b = get_data(stack, 1)->data;
+	if (size > 2)
 	{
-		if (stack->data > (stack->next)->data)
+	c = get_data(stack, 2)->data;
+	if ((a >= b && a <= c) || (a <= b && a >= c))
+		return (a);
+	if ((b <= a && b >= c) || (b >= a && b <= c))
+		return (b);
+	return (c);
+	}
+	else
+	if (a > b)
+		return (b);
+	return (a);
+}
+
+void tri(t_stack **stack, t_stack **petit, t_stack **grand, int pivot)
+{
+	t_stack *tmp;
+
+	while (*stack != NULL)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		tmp->next = NULL;
+		if (tmp->data > pivot)
 		{
-			temp = stack->data;
-			stack->data = (stack->next)->data;
-			(stack->next)->data = temp;
-			stack = head;
+			if (*grand == NULL)
+				*grand = tmp;
+			else
+				last_node(*grand)->next = tmp;
 		}
 		else
-			stack = stack->next;
+		{
+			if (*petit == NULL)
+				*petit = tmp;
+			else
+				last_node(*petit)->next = tmp;
+		}
 	}
+}
+
+void quicksort(t_stack **stack)
+{
+	int pivot;
+	int size;
+	t_stack *petit = NULL;
+	t_stack *grand = NULL;
+
+	size = (int)size_stack(*stack);
+	if (size < 2)
+		return ;
+	pivot = find(*stack, size);
+	tri(stack, &petit, &grand, pivot);
+	quicksort(&petit);
+	quicksort(&grand);
+	last_node(petit)->next = grand;
+	*stack = petit;
 }
 
 void	transform(t_stack **stack, t_stack *sorted)
@@ -95,7 +92,6 @@ void	transform(t_stack **stack, t_stack *sorted)
 		{
 			if (get_data(*stack, i)->data == get_data(sorted, j)->data)
 			{
-				//ft_printf("%d == %d\n", get_data(*stack, i)->data, j);
 				get_data(*stack, i)->data = j;
 				break ;
 			}
@@ -148,8 +144,8 @@ void algorithm(t_stack **stack_a, t_stack **stack_b)
 
 	sorted = NULL;
 	copy(*stack_a, &sorted);
-	quickSortRec(sorted, last_node(sorted));
+	quicksort(&sorted);
 	transform(stack_a, sorted);
-	radixsort(stack_a, stack_b);
 	free_all(sorted, NULL, NULL);
+	radixsort(stack_a, stack_b);
 }
