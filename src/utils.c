@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:08:32 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/19 02:13:57 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/20 01:20:02 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void free_all(t_stack *stack, char **str, char *display)
 		free(str);
 	}
 	if (display != NULL)
-		ft_printf("%s", display);
+		ft_printf(2, "%s", display);
 }
 
 t_stack *last_node(t_stack *stack)
@@ -78,4 +78,13 @@ size_t size_stack(t_stack *stack)
 		count++;
 	}
 	return (count);
+}
+t_stack *get_data(t_stack *stack, size_t index)
+{
+	while (index > 0 && stack != NULL)
+	{
+		stack = stack->next;
+		index--;
+	}
+	return (stack);
 }

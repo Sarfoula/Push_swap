@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:38:20 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/18 22:46:16 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/20 01:53:23 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,15 @@ int find_min(t_stack *stack)
 	size_t i;
 	int min;
 
-	i = 0;
+	i = size_stack(stack) - 1;
 	min = 0;
-	while (i < size_stack(stack))
+	while (i > 0)
 	{
 		if (get_data(stack, min)->data > get_data(stack, i)->data || i == 0)
 			min = i;
-		i++;
+		i--;
 	}
 	return (min);
-}
-
-t_stack *get_data(t_stack *stack, size_t index)
-{
-	while (index > 0 && stack != NULL)
-	{
-		stack = stack->next;
-		index--;
-	}
-	return (stack);
 }
 
 void three(t_stack **stack)
@@ -68,6 +58,23 @@ void five(t_stack **stack_a, t_stack **stack_b)
 	three(stack_a);
 	push(stack_a, stack_b, "pa");
 	push(stack_a, stack_b, "pa");
+}
+
+void algorithm(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*tmp;
+	t_stack *sorted;
+
+	tmp = *stack_a;
+	sorted = NULL;
+	while (tmp != NULL)
+	{
+		add_stack(&sorted, tmp->data);
+		tmp = tmp->next;
+	}
+	quicksort(&sorted);
+	radixsort(stack_a, stack_b, sorted);
+	free_all(sorted, NULL, NULL);
 }
 
 void sort(t_stack **stack_a, t_stack **stack_b)

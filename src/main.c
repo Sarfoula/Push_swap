@@ -6,12 +6,11 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:21:23 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/20 00:51:46 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/20 01:46:16 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-//erreur sur sortie d'erreur !!!
 int is_sorted(t_stack *stack)
 {
 	while (stack->next != NULL)
@@ -29,13 +28,12 @@ int main(int argc, char **argv)
 	t_stack *stack_b = NULL;
 
 	if ((argc > 2) | (argc == 1))
-		return (ft_printf("Wrong numbers of argument:\n./push_swap \"NUMBERS\""), 0);
+		return (ft_printf(2, "Wrong numbers of argument:\n./push_swap \"NUMBERS\"\n"), 0);
 	if (parse(argv[1], &stack_a) == 1)
 		return (0);
 	if (is_sorted(stack_a) == 1)
-		return (ft_printf("The list is already sorted"), 0);
+		return (ft_printf(1, "The list is already sorted\n"), 0);
 	sort(&stack_a, &stack_b);
-
 	free_all(stack_a, NULL, NULL);
 	return (0);
 }
