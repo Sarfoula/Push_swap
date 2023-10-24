@@ -6,12 +6,13 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:21:23 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/23 14:40:46 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/24 14:03:31 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-int is_sorted(t_stack *stack)
+
+int	is_sorted(t_stack *stack)
 {
 	while (stack->next != NULL)
 	{
@@ -22,13 +23,16 @@ int is_sorted(t_stack *stack)
 	return (1);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stack *stack_a = NULL;
-	t_stack *stack_b = NULL;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
+	stack_a = NULL;
+	stack_b = NULL;
 	if ((argc > 2) | (argc == 1))
-		return (ft_printf(2, "Wrong numbers of argument:\n./push_swap \"NUMBERS\"\n"), 0);
+		return (write(2, \
+			"Wrong numbers of argument:\n./push_swap \"NUMBERS\"\n", 50), 0);
 	if (parse(argv[1], &stack_a) == 1)
 		return (0);
 	if (is_sorted(stack_a) == 1)

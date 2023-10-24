@@ -6,17 +6,16 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:08:32 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/20 01:20:02 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/24 13:55:02 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-
-void free_all(t_stack *stack, char **str, char *display)
+void	free_all(t_stack *stack, char **str, char *display)
 {
-	int i;
-	t_stack *tmp;
+	int		i;
+	t_stack	*tmp;
 
 	while (stack != NULL)
 	{
@@ -35,10 +34,10 @@ void free_all(t_stack *stack, char **str, char *display)
 		free(str);
 	}
 	if (display != NULL)
-		ft_printf(2, "%s", display);
+		write(2, display, ft_strlen(display));
 }
 
-t_stack *last_node(t_stack *stack)
+t_stack	*last_node(t_stack *stack)
 {
 	if (stack == NULL)
 		return (NULL);
@@ -49,8 +48,8 @@ t_stack *last_node(t_stack *stack)
 
 int	add_stack(t_stack **stack, int data)
 {
-	t_stack *new_node;
-	t_stack *last;
+	t_stack	*new_node;
+	t_stack	*last;
 
 	new_node = malloc(sizeof(t_stack));
 	if (new_node == NULL)
@@ -67,7 +66,7 @@ int	add_stack(t_stack **stack, int data)
 	return (0);
 }
 
-size_t size_stack(t_stack *stack)
+size_t	size_stack(t_stack *stack)
 {
 	size_t	count;
 
@@ -79,7 +78,8 @@ size_t size_stack(t_stack *stack)
 	}
 	return (count);
 }
-t_stack *get_data(t_stack *stack, size_t index)
+
+t_stack	*get_data(t_stack *stack, size_t index)
 {
 	while (index > 0 && stack != NULL)
 	{
