@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:38:20 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/24 13:59:18 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/24 16:08:51 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	algorithm(t_stack **stack_a, t_stack **stack_b)
 		add_stack(&sorted, tmp->data);
 		tmp = tmp->next;
 	}
-	quicksort(&sorted, 1);
+	quicksort(&sorted);
 	translate(stack_a, sorted);
 	radixsort(stack_a, stack_b);
 	free_all(sorted, NULL, NULL);

@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:28:03 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/24 14:19:10 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/24 16:03:06 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ int	check_str(char **split)
 		j = 0;
 		while (split[i][j])
 		{
-			if (((split[i][j] < 48 || split[i][j] > 57) \
-				&& split[i][j] != '-' && split[i][j] != '+') || j > 11)
+			if (!ft_isdigit(split[i][j]) && split[i][j] != ' ')
+			{
+				if (split[i][j] != '-' && split[i][j] != '+')
+					return (1);
+				if (!ft_isdigit(split[i][j + 1]))
+					return (1);
+			}
+			if (j > 11)
 				return (1);
 			j++;
 		}

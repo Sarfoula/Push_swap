@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:44:24 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/24 14:01:00 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/24 16:09:01 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	radixsort(t_stack **stack_a, t_stack **stack_b);
 //Quicksort
 int		find_median(t_stack *stack, int size);
 void	tri(t_stack **stack, t_stack **petit, t_stack **grand, int pivot);
-void	quicksort(t_stack **stack, int start);
+void	quicksort(t_stack **stack);
 
 //Sort
 int		find_min(t_stack *stack);

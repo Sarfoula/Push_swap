@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 01:27:40 by yallo             #+#    #+#             */
-/*   Updated: 2023/10/24 13:58:21 by yallo            ###   ########.fr       */
+/*   Updated: 2023/10/24 16:08:44 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,22 @@ void	tri(t_stack **stack, t_stack **petit, t_stack **grand, int pivot)
 	}
 }
 
-void	quicksort(t_stack **stack, int start)
+void	quicksort(t_stack **stack)
 {
 	int		pivot;
 	int		size;
-	t_stack	*petit = NULL;
-	t_stack	*grand = NULL;
+	t_stack	*petit;
+	t_stack	*grand;
 
-	if (start == -1)
-	{
-		grand = NULL;
-		petit = NULL;
-	}
+	grand = NULL;
+	petit = NULL;
 	size = (int)size_stack(*stack);
 	if (size < 2)
 		return ;
 	pivot = find_median(*stack, size);
 	tri(stack, &petit, &grand, pivot);
-	quicksort(&petit, 0);
-	quicksort(&grand, 0);
+	quicksort(&petit);
+	quicksort(&grand);
 	last_node(petit)->next = grand;
 	*stack = petit;
 }
