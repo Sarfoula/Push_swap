@@ -17,7 +17,7 @@ all: $(LIBFT) $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(FLAG) $(OBJ) -g -L$(LIBFT_DIR) -lft -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) | $(OBJ_DIR)
 	$(CC) $(FLAG) -c $< -o $@
 
 $(OBJ_DIR):
